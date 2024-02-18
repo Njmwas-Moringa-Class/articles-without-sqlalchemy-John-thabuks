@@ -6,26 +6,26 @@ class Magazine:
 
     def __init__(self, name, category) :
         self._name = name
-        self.category = category
+        self._category = category
         Magazine.all_magazines.append(self)
         
         
-
+    @property
     #Magazine name()
     #Returns the name of this magazine
     def name(self):
         return self._name
-    
+    @property
     #Magazine category()
     #Returns the category of this magazine
     def category(self):
-        return self.category
+        return self._category
 
     # def __repr__(self) -> str:
     #     return (f"{self._name}" )
         
-
-    def all(self):
+    @classmethod
+    def all(cls):
         return Magazine.all_magazines
     
     def contributors(self):
@@ -41,13 +41,13 @@ class Magazine:
     def find_by_name(cls, name):
         print(cls)
         for magazine in Magazine.all_magazines:
-            if magazine.name() == name:
+            if magazine.name == name:
                 return magazine
             
     
     def magazine_articles(self):
         #get list of all articles and filters out those belonging to this magazine.
-        my_articles = [article for article in Article.all_articles if article.magazine() == self]
+        my_articles = [article for article in Article.all_articles if article.magazine == self]
         print(my_articles)
         Magazine.mag_articles = my_articles
         return my_articles
